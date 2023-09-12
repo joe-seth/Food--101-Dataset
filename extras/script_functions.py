@@ -156,6 +156,9 @@ def create_tensorboard_callback(dir_name, experiment_name):
 import matplotlib.pyplot as plt
 
 # Plot the validation and training curves separately
+# Plot the validation and training curves separately
+
+# Plot the validation and training curves separately
 def plot_loss_curve(history):
   """
   Returns separate loss curves for training and validation metrics. (This is also possible by use of callbacks)
