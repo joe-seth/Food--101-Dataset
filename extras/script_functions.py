@@ -155,13 +155,11 @@ def create_tensorboard_callback(dir_name, experiment_name):
 # Plot the validation and training data separately
 import matplotlib.pyplot as plt
 
-def plot_loss_curves(history):
+# Plot the validation and training curves separately
+def plot_loss_curve(history):
   """
-  Returns separate loss curves for training and validation metrics.
-
-  Args:
-    history: TensorFlow model History object (see: https://www.tensorflow.org/api_docs/python/tf/keras/callbacks/History)
-  """ 
+  Returns separate loss curves for training and validation metrics. (This is also possible by use of callbacks)
+  """
   loss = history.history['loss']
   val_loss = history.history['val_loss']
 
@@ -171,19 +169,21 @@ def plot_loss_curves(history):
   epochs = range(len(history.history['loss']))
 
   # Plot loss
+  plt.figure(figsize=(15,6))
+  plt.subplot(1,2,1)
   plt.plot(epochs, loss, label='training_loss')
   plt.plot(epochs, val_loss, label='val_loss')
-  plt.title('Loss')
-  plt.xlabel('Epochs')
+  plt.title('loss')
+  plt.xlabel('epochs')
   plt.legend()
 
-  # Plot accuracy
-  plt.figure()
+  # Plot the accuray
+  plt.subplot(1,2,2)
   plt.plot(epochs, accuracy, label='training_accuracy')
   plt.plot(epochs, val_accuracy, label='val_accuracy')
-  plt.title('Accuracy')
-  plt.xlabel('Epochs')
-  plt.legend();
+  plt.title('accuracy')
+  plt.xlabel('epochs')
+  plt.legend()
 
 def compare_historys(original_history, new_history, initial_epochs=5):
     """
